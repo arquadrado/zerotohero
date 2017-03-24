@@ -1,0 +1,15 @@
+{
+  "name": "topo",
+  "version": "1.0.0",
+  "description": "Node app test",
+  "main": "index.js",
+  "dependencies": {
+    "nodemon": "^1.11.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "António Quadrado",
+  "license": "ISC"
+}
