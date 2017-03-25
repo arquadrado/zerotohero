@@ -1,10 +1,10 @@
-const http = require('http')
-const router = require('./routes/web.js')
 const path = require('path');
+
 global.appRoot = path.resolve(__dirname);
 global.namespace = require('./bootstrap/FileStructure.js')
 
-console.log(global.namespace.get('middleware', 'TestMiddleware'))
+const http = require('http')
+const router = require('./routes/web.js')
 
 const hostname = '127.0.0.1'
 const port = 3000

@@ -21,7 +21,7 @@ const Namespace = function (initial) {
 
                 if (fs.lstatSync(filename + '/' + child).isDirectory()) {
 
-                    Object.assign(initial, this.getFileStructure(filename + '/' + child))
+                    Object.assign(initial, this.getFileStructure(`${filename}/${child}`))
                 }
 
                 return initial
@@ -34,18 +34,25 @@ const Namespace = function (initial) {
 
     this.structure = this.getFileStructure(initial)
 
-    this.get = function (namespace, file, level) {
-        const structure = level ? this.structure[level[0]] : this.structure
+    this.searchFileStructure = (namespace, filename, data = null) => {
+        const structure = data === null ? this.structure : data
+      
         for (let prop in structure) {
-            if (prop === namespace) {
-                return `${structure[namespace].path}/${file}.js`
+            if (prop !== '.git' && prop !== 'node_modules') {
+                if (prop == namespace) {
+                    return `${structure[prop].path}/${filename}.js`      
+                }
+                
+                if (Object.keys(structure[prop].children).length !== 0) {
+                    return this.searchFileStructure(namespace, filename, structure[prop].children)
+                  
+                }
             }
-            console.log(structure, 'structure');
-            /*if (structure[namespace].children) {
-                level.push(prop)
-                this.get(namespace, file, level)
-            }*/
         }
+    }
+
+    this.get = (namespace, filename) => {
+        return this.searchFileStructure(namespace, filename) ? require(this.searchFileStructure(namespace, filename)) : null
     }
 
 }
