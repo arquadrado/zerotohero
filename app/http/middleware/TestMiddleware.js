@@ -2,7 +2,7 @@
 
 const TestMiddleware = function () {
     this.handle = () => {
-        console.log('I am middlewaring this shit')
+        console.log('I am middlewaring this shit originally')
     }
 }
 

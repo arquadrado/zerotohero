@@ -1,7 +1,5 @@
-const path = require('path');
+require('./bootstrap.js');
 
-global.appRoot = path.resolve(__dirname);
-global.namespace = require('./bootstrap/FileStructure.js')
 
 const http = require('http')
 const router = require('./routes/web.js')

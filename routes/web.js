@@ -9,7 +9,7 @@ const routes = {
         'name': 'home',
         'controller': 'HomeController',
         'method': 'home',
-        'middleware': ['TestMiddleware', 'AnotherMiddleware']
+        'middleware': ['TestMiddleware']
     },
     '/test': {
         'name': 'test',
