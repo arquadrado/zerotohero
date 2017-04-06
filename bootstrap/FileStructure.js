@@ -21,7 +21,7 @@ const Namespace = function (initial) {
 
                 if (fs.lstatSync(filename + '/' + child).isDirectory()) {
 
-                    Object.assign(initial, this.getFileStructure(filename + '/' + child))
+                    Object.assign(initial, this.getFileStructure(`${filename}/${child}`))
                 }
 
                 return initial
@@ -32,27 +32,62 @@ const Namespace = function (initial) {
         return info
     }
 
-    this.structure = this.getFileStructure(initial)
+    this.getNestedProperty = (namespace, data) => {
 
-    this.get = function (namespace, file, level) {
-        const structure = level.length ? this.structure[level[0]] : this.structure
+        return namespace.reduce((final, prop) => {
+
+
+            final = final ? final.children[prop] : data[prop]
+
+            return final
+
+        }, null)
+    }
+
+    this.searchFileStructure = (namespace, filename, data = null) => {
+        const structure = data === null ? this.getFileStructure(initial) : data
+        const parsedNamespace = namespace.split('.')
+
+
 
         for (let prop in structure) {
 
-            if (prop === namespace) {
+            if (prop !== '.git' && prop !== 'node_modules') {
 
-                return `${structure[namespace].path}/${file}.js`
+                if (parsedNamespace.length == 1 && structure[prop].children.hasOwnProperty(parsedNamespace[0])) {
 
-            }
+                    return `${structure[prop].children[parsedNamespace[0]].path}/${filename}.js`
+                }
 
-            console.log(structure[prop].children, 'structure');
+                if (prop == parsedNamespace[0]) {
+                    if (parsedNamespace.length == 1) {
+                        return `${structure[prop].path}/${filename}.js`
+                    }
 
-            if (structure[prop].children) {
-                level.push(prop)
-                this.get(namespace, file, level)
+                    const result = this.getNestedProperty(parsedNamespace, structure[prop].children)
+
+                    if (result) {
+                        return `${result.path}/${filename}.js`
+                    }
+
+                }
+
+                if (Object.keys(structure[prop].children).length !== 0) {
+                    const fetchedPath = this.searchFileStructure(namespace, filename, structure[prop].children)
+
+                    if (fetchedPath) {
+                        return fetchedPath
+                    }
+
+                }
             }
         }
     }
+
+    this.get = (namespace, filename) => {
+        return this.searchFileStructure(namespace, filename) ? require(this.searchFileStructure(namespace, filename)) : null
+    }
+
 
 }
 

@@ -2,17 +2,25 @@
 
 const namespace = global.namespace
 
+console.log(global.appRoot)
+
 const routes = {
     '/': {
         'name': 'home',
         'controller': 'HomeController',
         'method': 'home',
-        'middleware': ['TestMiddleware', 'AnotherMiddleware']
+        'middleware': ['TestMiddleware']
     },
     '/test': {
         'name': 'test',
         'controller': 'TestController',
         'method': 'test',
+        'middleware': []
+    },
+    '/another-route': {
+        'name': 'test',
+        'controller': 'HomeController',
+        'method': 'hey',
         'middleware': []
     }
 }
@@ -25,13 +33,19 @@ const Router = function () {
                 routes[req.url].middleware.length) {
 
                 routes[req.url].middleware.forEach((routeMiddleware) => {
-                    const middleware = require(`../middleware/${routeMiddleware}.js`)
-                    middleware.handle()
+
+                    const middleware = namespace.get('middleware', routeMiddleware)
+
+                    try {
+                        middleware.handle()
+                    } catch (exception) {
+                        throw new Error(exception)
+                    }
                 })
 
             }
 
-            const controller = require('../controllers/' + routes[req.url]['controller'])
+            const controller = namespace.get('controllers', routes[req.url]['controller'])
 
             const method = routes[req.url]['method']
 
