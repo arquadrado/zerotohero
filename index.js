@@ -4,7 +4,7 @@ const path = require('path');
 global.appRoot = path.resolve(__dirname);
 global.namespace = require('./bootstrap/FileStructure.js')
 
-console.log(global.namespace.get('middleware', 'TestMiddleware'))
+console.log(global.namespace.get('middleware', 'TestMiddleware', []))
 
 const hostname = '127.0.0.1'
 const port = 3000

@@ -35,16 +35,22 @@ const Namespace = function (initial) {
     this.structure = this.getFileStructure(initial)
 
     this.get = function (namespace, file, level) {
-        const structure = level ? this.structure[level[0]] : this.structure
+        const structure = level.length ? this.structure[level[0]] : this.structure
+
         for (let prop in structure) {
+
             if (prop === namespace) {
+
                 return `${structure[namespace].path}/${file}.js`
+
             }
-            console.log(structure, 'structure');
-            /*if (structure[namespace].children) {
+
+            console.log(structure[prop].children, 'structure');
+
+            if (structure[prop].children) {
                 level.push(prop)
                 this.get(namespace, file, level)
-            }*/
+            }
         }
     }
 
