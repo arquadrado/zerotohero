@@ -1,14 +1,14 @@
 # zerotohero
 	Node from the bottom up
 
-##DOCS
+## DOCS
 	
-###Namespace
+### Namespace
 Needs the `global.appRoot` variable defined to the root of the project
 
-###Methods
+### Methods
 
-###get(namespace, filename) -- Not providing a file extension will default to .js 
+### get(namespace, filename) -- Not providing a file extension will default to .js 
 Gets a resource file
 
 ```
@@ -17,7 +17,7 @@ Gets a resource file
 	namespace.get('middleware', 'MyMiddleware')
 ```
 
-###getPath(namespace, filename)
+### getPath(namespace, filename)
 Gets the path to a resource file
 
 ```
