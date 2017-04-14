@@ -6,9 +6,9 @@
 
     webpack(webpackConfig, (err, stats) => {
         if (err || stats.hasErrors()) {
-           console.log(err, stats.toString({
+           /*console.log(err, stats.toString({
             colors: true
-           }), 'erros com fartura')
+           }), 'erros com fartura')*/
         }
     })
 

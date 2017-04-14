@@ -22,12 +22,20 @@ const routes = {
         'controller': 'HomeController',
         'method': 'hey',
         'middleware': []
+    },
+
+    '/assets/bundle': {
+        'name': 'test',
+        'controller': 'AssetsController',
+        'method': 'scripts',
+        'middleware': []
     }
 }
 
 const Router = function () {
     this.handle = (req, res) => {
         if (routes.hasOwnProperty(req.url)) {
+
 
             if (routes[req.url].middleware !== undefined &&
                 routes[req.url].middleware.length) {
@@ -52,6 +60,7 @@ const Router = function () {
             if (controller.hasOwnProperty(method)) {
 
                 const data = controller[method]()
+                
                 res.statusCode = data.status
                 res.setHeader('Content-Type', data.contentType)
                 res.end(data.content)

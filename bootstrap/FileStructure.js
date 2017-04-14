@@ -56,18 +56,29 @@ const Namespace = function (initial) {
 
                 if (parsedNamespace.length == 1 && structure[prop].children.hasOwnProperty(parsedNamespace[0])) {
 
-                    return `${structure[prop].children[parsedNamespace[0]].path}/${filename}.js`
+                    const explodedFilename = filename.split('.') 
+                        const fileExtension = explodedFilename.length == 1 ? 'js' : explodedFilename[explodedFilename.length - 1]
+                            
+                    return `${structure[prop].children[parsedNamespace[0]].path}/${explodedFilename[0]}.${fileExtension}`
                 }
 
                 if (prop == parsedNamespace[0]) {
                     if (parsedNamespace.length == 1) {
-                        return `${structure[prop].path}/${filename}.js`
+
+                        const explodedFilename = filename.split('.') 
+                        const fileExtension = explodedFilename.length == 1 ? 'js' : explodedFilename[explodedFilename.length - 1]
+
+                        return `${structure[prop].path}/${explodedFilename[0]}.${fileExtension}`
                     }
 
                     const result = this.getNestedProperty(parsedNamespace, structure[prop].children)
 
                     if (result) {
-                        return `${result.path}/${filename}.js`
+
+                        const explodedFilename = filename.split('.') 
+                        const fileExtension = explodedFilename.length == 1 ? 'js' : explodedFilename[explodedFilename.length - 1] 
+
+                        return `${result.path}/${explodedFilename[0]}.${fileExtension}`
                     }
 
                 }
@@ -86,6 +97,10 @@ const Namespace = function (initial) {
 
     this.get = (namespace, filename) => {
         return this.searchFileStructure(namespace, filename) ? require(this.searchFileStructure(namespace, filename)) : null
+    }
+
+    this.getPath = (namespace, filename) => {
+        return this.searchFileStructure(namespace, filename)
     }
 
 

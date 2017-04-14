@@ -70,7 +70,7 @@
 /* 0 */
 /***/ (function(module, exports) {
 
-throw new Error("Module parse failed: /Users/wizdevelopers3/Tests/topo/resources/assets/js/test.js Unexpected token (1:8)\nYou may need an appropriate loader to handle this file type.\n| exports default {\n|     pato: 'bravo'\n| }");
+throw new Error("Module parse failed: /home/arquadrado/development/node/zerotohero/resources/assets/js/test.js Unexpected token (1:8)\nYou may need an appropriate loader to handle this file type.\n| exports default {\n|     pato: 'bravo'\n| }");
 
 /***/ }),
 /* 1 */
