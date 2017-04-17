@@ -54,21 +54,33 @@ const Router = function () {
             }
 
             const controller = namespace.get('controllers', routes[req.url]['controller'])
-
             const method = routes[req.url]['method']
 
-            if (controller.hasOwnProperty(method)) {
+            if (routes[req.url]['controller'] === 'AssetsController') {
 
-                const data = controller[method]()
-                
-                res.statusCode = data.status
-                res.setHeader('Content-Type', data.contentType)
-                res.end(data.content)
+                controller[method]((status, contentType, data) => {
+                    res.statusCode = status
+                    res.setHeader('Content-Type', contentType)
+                    res.end(data)
+                })
 
-                return 0
+
+            } else {
+
+                if (controller.hasOwnProperty(method)) {
+
+                    const data = controller[method]()
+
+                    res.statusCode = data.status
+                    res.setHeader('Content-Type', data.contentType)
+                    res.end(data.content)
+
+                    return 0
+                }
+
+                throw new Error('Invalid request')
+
             }
-
-            throw new Error('Invalid request')
         }
     }
 }

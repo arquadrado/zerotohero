@@ -6,9 +6,9 @@
 /******/ 	function __webpack_require__(moduleId) {
 /******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
+/******/ 		if(installedModules[moduleId]) {
 /******/ 			return installedModules[moduleId].exports;
-/******/
+/******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
@@ -70,19 +70,22 @@
 /* 0 */
 /***/ (function(module, exports) {
 
-throw new Error("Module parse failed: /home/arquadrado/development/node/zerotohero/resources/assets/js/test.js Unexpected token (1:8)\nYou may need an appropriate loader to handle this file type.\n| exports default {\n|     pato: 'bravo'\n| }");
+throw new Error("Module build failed: SyntaxError: Unexpected token, expected ; (1:8)\n\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 1 | \u001b[39mexports \u001b[36mdefault\u001b[39m {\n \u001b[90m   | \u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 2 | \u001b[39m    pato\u001b[33m:\u001b[39m \u001b[32m'bravo'\u001b[39m\n \u001b[90m 3 | \u001b[39m}\u001b[0m\n");
 
 /***/ }),
 /* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__test_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__test_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__test_js__);
 
 
-console.log(__WEBPACK_IMPORTED_MODULE_0__test_js__["default"].pato)
+var _test = __webpack_require__(0);
+
+var _test2 = _interopRequireDefault(_test);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+console.log(_test2.default.pato);
 
 /***/ })
 /******/ ]);
