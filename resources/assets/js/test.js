@@ -1,3 +1,5 @@
-exports default {
-    pato: 'bravo'
+export default {
+    pato: 'bravo',
+    rato: 'rapolho',
+    sapato: 'palha'
 }

@@ -68,9 +68,19 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed: SyntaxError: Unexpected token, expected ; (1:8)\n\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 1 | \u001b[39mexports \u001b[36mdefault\u001b[39m {\n \u001b[90m   | \u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 2 | \u001b[39m    pato\u001b[33m:\u001b[39m \u001b[32m'bravo'\u001b[39m\n \u001b[90m 3 | \u001b[39m}\u001b[0m\n");
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
+    pato: 'bravo',
+    rato: 'rapolho',
+    sapato: 'palha'
+};
 
 /***/ }),
 /* 1 */
@@ -79,13 +89,18 @@ throw new Error("Module build failed: SyntaxError: Unexpected token, expected ; 
 "use strict";
 
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _test = __webpack_require__(0);
 
 var _test2 = _interopRequireDefault(_test);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-console.log(_test2.default.pato);
+//const animals = require('./test.js')
+var stuff = _extends({
+    sopa: 'Urso'
+}, _test2.default);
 
 /***/ })
 /******/ ]);

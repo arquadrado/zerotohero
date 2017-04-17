@@ -1,3 +1,7 @@
 import animals from './test.js'
 
-console.log(animals.pato)
+//const animals = require('./test.js')
+const stuff = {
+    sopa: 'Urso',
+    ...animals
+}
