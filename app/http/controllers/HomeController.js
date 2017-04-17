@@ -6,22 +6,11 @@ const Controller = require('./Controller.js')
 
 
 const HomeController = function () {
-    this.home = () => {
-    	
-        return {
-            status: 200,
-            contentType: 'text/html',
-            content: pug.renderFile(namespace.getPath('views', 'home.pug'), {
-            	
-            })
-        }
+    this.home = (callback) => {
+    	callback(200, 'text/html', pug.renderFile(namespace.getPath('views', 'home.pug'), {}))
     }
-    this.hey = () => {
-    	return {
-    		status: 200,
-    		contentType: 'text/html',
-            content: '<h3><a href="/test">Another route</a></h3>'
-    	}
+    this.hey = (callback) => {
+        callback(200, 'text/html', '<h3><a href="/test">Another route</a></h3>')
     }
 }
 
