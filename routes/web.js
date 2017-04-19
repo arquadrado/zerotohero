@@ -22,16 +22,25 @@ const routes = {
         'middleware': []
     },
 
-    '/assets/bundle': {
+    '/build/bundle': {
         'name': 'test',
         'controller': 'AssetsController',
-        'method': 'scripts',
+        'method': 'getResource',
+        'middleware': []
+    },
+
+    '/build/main.css': {
+        'name': 'styles',
+        'controller': 'AssetsController',
+        'method': 'getResource',
         'middleware': []
     }
 }
 
 const Router = function () {
+
     this.handle = (req, res) => {
+
         if (routes.hasOwnProperty(req.url)) {
 
             this.middleware(req)
@@ -41,14 +50,14 @@ const Router = function () {
 
             if (controller.hasOwnProperty(method)) {
 
-                controller[method]((status, contentType, data) => {
+                controller[method](req, (status, contentType, data) => {
                     res.statusCode = status
                     res.setHeader('Content-Type', contentType)
                     res.end(data)
 
                 })
 
-                return 0;
+                return 0
             }
 
             throw new Error('Invalid request')
@@ -66,9 +75,13 @@ const Router = function () {
                 const middleware = namespace.get('middleware', routeMiddleware)
 
                 try {
+
                     middleware.handle()
+
                 } catch (exception) {
+
                     throw new Error(exception)
+
                 }
             })
 

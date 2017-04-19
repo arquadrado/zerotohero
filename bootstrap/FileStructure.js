@@ -56,16 +56,16 @@ const Namespace = function (initial) {
 
                 if (parsedNamespace.length == 1 && structure[prop].children.hasOwnProperty(parsedNamespace[0])) {
 
-                    const explodedFilename = filename.split('.') 
+                    const explodedFilename = filename.split('.')
                         const fileExtension = explodedFilename.length == 1 ? 'js' : explodedFilename[explodedFilename.length - 1]
-                            
+
                     return `${structure[prop].children[parsedNamespace[0]].path}/${explodedFilename[0]}.${fileExtension}`
                 }
 
                 if (prop == parsedNamespace[0]) {
                     if (parsedNamespace.length == 1) {
 
-                        const explodedFilename = filename.split('.') 
+                        const explodedFilename = filename.split('.')
                         const fileExtension = explodedFilename.length == 1 ? 'js' : explodedFilename[explodedFilename.length - 1]
 
                         return `${structure[prop].path}/${explodedFilename[0]}.${fileExtension}`
@@ -75,8 +75,8 @@ const Namespace = function (initial) {
 
                     if (result) {
 
-                        const explodedFilename = filename.split('.') 
-                        const fileExtension = explodedFilename.length == 1 ? 'js' : explodedFilename[explodedFilename.length - 1] 
+                        const explodedFilename = filename.split('.')
+                        const fileExtension = explodedFilename.length == 1 ? 'js' : explodedFilename[explodedFilename.length - 1]
 
                         return `${result.path}/${explodedFilename[0]}.${fileExtension}`
                     }
@@ -100,6 +100,13 @@ const Namespace = function (initial) {
     }
 
     this.getPath = (namespace, filename) => {
+
+        if (namespace instanceof Array) {
+            filename = namespace.pop()
+
+            return this.searchFileStructure(namespace.filter(element => element !== '').join('/'), filename)
+        }
+
         return this.searchFileStructure(namespace, filename)
     }
 

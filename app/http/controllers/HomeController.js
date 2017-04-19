@@ -6,14 +6,17 @@ const Controller = require('./Controller.js')
 
 
 const HomeController = function () {
-    this.home = (callback) => {
+    this.home = (req, callback) => {
     	callback(200, 'text/html', pug.renderFile(namespace.getPath('views', 'home.pug'), {}))
     }
-    this.hey = (callback) => {
-        callback(200, 'text/html', '<h3><a href="/test">Another route</a></h3>')
+    this.hey = (req, callback) => {
+
+        callback(200, 'text/html', `<h3><a href="/test">Another route</a></h3>`)
     }
 }
 
 HomeController.prototype = Controller
 
 module.exports = new HomeController()
+
+

@@ -7,34 +7,38 @@ const fs = require('fs')
 const Controller = require('./Controller.js')
 
 const AssetsController = function () {
-    this.scripts = (callback) => {
 
-        const pathname = namespace.getPath('build', 'bundle')
+    //resolves the resource based on the request url and returns the appropriate resource, otherwise it responds with error
 
-        fs.exists(pathname, function (exist) {
+    this.getResource = (req, callback) => {
 
-            if(!exist || fs.statSync(pathname).isDirectory()) {
+        if (req) {
+            const pathname = namespace.getPath(req.url.split('/'))
 
-                callback(404, 'text/plain', `File ${pathname} not found!`)
-            }
+            fs.exists(pathname, function (exist) {
 
-            // read file from file system
-            fs.readFile(pathname, function(err, data){
-                if(err){
-                    callback(500, 'text/plain', `Error getting the file: ${err}.`)
+                if(!exist || fs.statSync(pathname).isDirectory()) {
 
-                } else {
-
-                    callback(200, 'application/javascript', data)
-                    /*return {
-                        status: 200,
-                        contentType: 'application/javascript',
-                        content: data
-                    }*/
-
+                    callback(404, 'text/plain', `File ${pathname} not found!`)
                 }
+
+                // read file from file system
+                fs.readFile(pathname, function(err, data){
+                    if(err){
+                        callback(500, 'text/plain', `Error getting the file: ${err}.`)
+
+                    } else {
+
+                        callback(200, 'application/javascript', data)
+
+                    }
+                })
             })
-        })
+
+            return 0
+        }
+
+        callback(404, 'text/plain', `File not found!`)
 
     }
 

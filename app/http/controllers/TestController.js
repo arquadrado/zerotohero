@@ -3,7 +3,7 @@
 const Controller = require('./Controller.js')
 
 const TestController = function () {
-    this.test = (callback) => {
+    this.test = (req, callback) => {
 
         callback(200, 'text/html', '<h3>Test <a href="/">route</a></h3>')
     }

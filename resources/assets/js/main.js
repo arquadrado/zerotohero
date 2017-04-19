@@ -1,7 +1,8 @@
 import animals from './test.js'
 
-//const animals = require('./test.js')
 const stuff = {
-    sopa: 'Urso',
+    sopa: 'de peixe espad e Urso',
     ...animals
 }
+
+console.log(stuff, 'the real stuff iede')
