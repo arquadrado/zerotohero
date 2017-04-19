@@ -2,7 +2,7 @@ require('./bootstrap.js');
 
 
 const http = require('http')
-const router = require('./routes/web.js')
+const router = require('./routes/router.js')
 
 
 const hostname = '127.0.0.1'

@@ -1,6 +1,49 @@
-.xpto {
-    background: teal;
-    h2 {
-        color: crimson;
+.content {
+    padding: 21px;
+    position: relative;
+
+    h1, h2 {
+        color: $secondary-color;
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 49px;
+    }
+
+    .primary-button {
+        margin-top: 28px;
+        text-decoration: none;
+        color: $secondary-color;
+        text-align: center;
+        display: block;
+    }
+
+    .login-box {
+        margin: auto;
+        width: 500px;
+        padding: 10px;
+        background-color: $secondary-color;
+        text-align: center;
+        .form-field {
+            padding: 7px;
+            label {
+                display: block;
+                color: $primary-color;
+            }
+            input {
+                margin: 7px;
+                height: 28px;
+                width: 126px;
+            }
+        }
+
+        .submit-button {
+            padding: 7px;
+            border: 0;
+            background-color: $primary-color;
+            color: $secondary-color;
+            font-size: 14px;
+            font-weight: bold;
+            width: 126px;
+        }
     }
 }

@@ -1,8 +1,14 @@
+$primary-color: #031b27;
+$secondary-color: #ffffff;
+
 
 @import 'test';
 
+
+
 body {
-    background-color: orange;
+    margin: 0;
+    background-color: $primary-color;
     font-family: 'Arial';
     color: #fff;
 }
